@@ -4,10 +4,11 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
 import '../../utils/UtilsColot.dart';
+import '../scan/Scan.dart';
 
 
-class Principal extends StatefulWidget {
-  const Principal({Key? key}) : super(key: key);
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -15,11 +16,13 @@ class Principal extends StatefulWidget {
   }
 }
 
-class _StateBody extends State<Principal> {
+class _StateBody extends State<Home> {
   int _selectedIndex = 0;
 
   static const List<Widget> _windowsItem = <Widget>[
-
+      Text("Home"),
+      Scan(),
+      Text("Profile"),
   ];
 
   @override
@@ -79,11 +82,11 @@ class _StateBody extends State<Principal> {
           ),
           tabs: const [
             GButton(
-              icon: LineIcons.dashcube,
+              icon: LineIcons.home,
               text: 'Acceuil',
             ),
             GButton(
-              icon: LineIcons.damagedHouse,
+              icon: Icons.qr_code_scanner,
               text: 'Scan',
             ),
     
