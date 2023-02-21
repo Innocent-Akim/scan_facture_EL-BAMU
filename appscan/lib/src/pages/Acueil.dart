@@ -9,6 +9,15 @@ class Accuiel extends StatefulWidget {
 class _Body extends State<Accuiel> {
   @override
   Widget build(BuildContext context) {
-   return Scaffold();
+   return SizedBox(
+    child: Stack(
+      children:  <Widget>[
+        Positioned(
+          top: 0,
+          child: Container(),
+        )
+      ],
+    ),
+   );
   }
 }

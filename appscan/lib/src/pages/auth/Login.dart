@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:line_icons/line_icons.dart';
 import '../../custom/Field.dart';
 import '../../utils/UtilsColot.dart';
+import '../home/Home.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -129,7 +130,11 @@ class _StateBody extends State<Login> {
                                     color: AppFont.blueColor,
                                     text: "Connexion",
                                     onPressed: () {
-                                 
+                                 setState(() {
+                                   Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                                    return const Home();
+                                   }));
+                                 });
                                     }),
                                 const SizedBox(height: 10),
                               ],
