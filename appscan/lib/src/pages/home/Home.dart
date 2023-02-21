@@ -4,6 +4,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
 import '../../utils/UtilsColot.dart';
+import '../scan/Scan.dart';
 
 
 class Home extends StatefulWidget {
@@ -20,7 +21,7 @@ class _StateBody extends State<Home> {
 
   static const List<Widget> _windowsItem = <Widget>[
       Text("Home"),
-      Text("Scan"),
+      Scan(),
       Text("Profile"),
   ];
 
