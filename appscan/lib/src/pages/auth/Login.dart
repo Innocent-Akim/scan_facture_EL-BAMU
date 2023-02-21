@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 import '../../custom/Field.dart';
 import '../../utils/UtilsColot.dart';
@@ -63,8 +63,7 @@ class _StateBody extends State<Login> {
                               children: [
                                 const SizedBox(height: 10),
                                 Expanded(
-                                  child: SvgPicture.asset(
-                                      "assets/img/auth.svg",
+                                  child: SvgPicture.asset("assets/img/auth.svg",
                                       width: size.width * .6),
                                 ),
                                 Row(
@@ -130,11 +129,9 @@ class _StateBody extends State<Login> {
                                     color: AppFont.blueColor,
                                     text: "Connexion",
                                     onPressed: () {
-                                 setState(() {
-                                   Navigator.of(context).push(MaterialPageRoute(builder: (context){
-                                    return const Home();
-                                   }));
-                                 });
+                                      setState(() {
+                                        Get.toNamed('/home');
+                                      });
                                     }),
                                 const SizedBox(height: 10),
                               ],

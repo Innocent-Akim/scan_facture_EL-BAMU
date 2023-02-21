@@ -2,7 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get_navigation/src/routes/get_route.dart';
 import '../pages/auth/Login.dart';
+import '../pages/home/Home.dart';
 import 'UtilsColot.dart';
 
 class App extends StatelessWidget {
@@ -16,7 +19,12 @@ class App extends StatelessWidget {
       systemNavigationBarDividerColor: Colors.transparent,
       systemNavigationBarIconBrightness: Brightness.light,
     ));
-    return MaterialApp(
+    return GetMaterialApp(
+      initialRoute: '/',
+      getPages: [
+       GetPage(name: '/', page:()=>Login()),
+       GetPage(name: '/home', page:()=>Home()),
+      ],
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.grey,

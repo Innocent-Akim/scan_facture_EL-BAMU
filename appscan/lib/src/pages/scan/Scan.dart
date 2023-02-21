@@ -1,15 +1,9 @@
 import 'dart:developer';
 import 'dart:io';
-
-import 'package:appscan/src/utils/UtilsColot.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:line_icons/line_icon.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-
 class Scan extends StatefulWidget {
   const Scan({super.key});
-
   @override
   State<StatefulWidget> createState() => _Body();
 }
@@ -18,6 +12,7 @@ class _Body extends State<Scan> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   Barcode? result;
   QRViewController? controller;
+
   @override
   void reassemble() {
     super.reassemble();
@@ -75,7 +70,6 @@ class _Body extends State<Scan> {
       });
     });
   }
-
   Widget _buildQrView(BuildContext context) {
     var scanArea = (MediaQuery.of(context).size.width < 400 ||
             MediaQuery.of(context).size.height < 400)
