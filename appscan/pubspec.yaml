@@ -36,6 +36,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   qr_code_scanner: ^1.0.1
+  line_icons: ^2.0.1
+  flutter_svg: ^2.0.1
 
 dev_dependencies:
   flutter_test:
@@ -78,9 +80,8 @@ flutter:
   fonts:
     - family: Poppins
       fonts:
-        - asset: assets/font/Poppins-Black.ttf
-        - asset: assets/font/Poppins-Bold.ttf
-          weight: 500
+        - asset: assets/font/Poppins-ExtraLight.ttf
+          weight: 400
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

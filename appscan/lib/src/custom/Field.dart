@@ -26,14 +26,13 @@ Widget buildTextField({
   TextEditingController? controller,
 }) {
   return Padding(
-    padding: const EdgeInsets.all(8.0),
+    padding: const EdgeInsets.all(6.0),
     child: TextFormField(
-      cursorHeight: 10,
+      cursorHeight: 5,
       textCapitalization: TextCapitalization.words,
       keyboardType: textInputType,
       keyboardAppearance: Brightness.light,
       readOnly: readOnly,
-      // ignore: prefer_const_constructors
       controller: controller,
       obscureText: obscureText,
       // ignore: prefer_const_constructors
