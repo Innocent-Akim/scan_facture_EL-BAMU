@@ -63,8 +63,8 @@ class _StateBody extends State<Login> {
                                 const SizedBox(height: 10),
                                 Expanded(
                                   child: SvgPicture.asset(
-                                      "assets/img/login.svg",
-                                      width: size.width * .4),
+                                      "assets/img/auth.svg",
+                                      width: size.width * .6),
                                 ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
