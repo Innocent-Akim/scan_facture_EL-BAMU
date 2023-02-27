@@ -1,7 +1,13 @@
+// ignore_for_file: sort_child_properties_last, prefer_const_constructors
+
 import 'dart:developer';
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/utils.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+
 class Scan extends StatefulWidget {
   const Scan({super.key});
   @override
@@ -36,25 +42,35 @@ class _Body extends State<Scan> {
               children: [
                 Expanded(flex: 4, child: _buildQrView(context)),
 
-                // Expanded(
-                //   flex: 1,
-                //   child: Center(
-                //     child: (result != null)
-                //         ? Text(
-                //             'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
-                //         : Text('Scan a code'),
-                //   ),
-                // )
+                Expanded(
+                  flex: 1,
+                  child: Center(
+                    child: (result != null)
+                        ? Text(
+                            'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
+                        : Text('Scan a code'),
+                  ),
+                )
               ],
             ),
           ),
           Positioned(
-            bottom: 10,
-            child: Container(
-              width: 20,
-              height: 20,
-              // ignore: prefer_const_constructors
-              decoration: BoxDecoration(color: Colors.yellow),
+            bottom: 100,
+            width: w.width,
+            child: Center(
+              child: TextButton(
+                  child: Text("Close".toUpperCase(),
+                      style: TextStyle(fontSize: 14)),
+                  style: ButtonStyle(
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                          EdgeInsets.all(15)),
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.red),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                              side: BorderSide(color: Colors.red)))),
+                  onPressed: () => Get.back()),
             ),
           )
         ],
@@ -70,6 +86,7 @@ class _Body extends State<Scan> {
       });
     });
   }
+
   Widget _buildQrView(BuildContext context) {
     var scanArea = (MediaQuery.of(context).size.width < 400 ||
             MediaQuery.of(context).size.height < 400)

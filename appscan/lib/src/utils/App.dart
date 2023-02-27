@@ -22,14 +22,14 @@ class App extends StatelessWidget {
     return GetMaterialApp(
       initialRoute: '/',
       getPages: [
-       GetPage(name: '/', page:()=>Login()),
-       GetPage(name: '/home', page:()=>Home()),
+       GetPage(name: '/', page:()=>const Login()),
+       GetPage(name: '/home', page:()=>const Home()),
       ],
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.grey,
-        dividerTheme: DividerThemeData(space: 0),
-        fontFamily: "${AppFont.primaryFont}",
+        dividerTheme: const DividerThemeData(space: 0),
+        fontFamily: AppFont.primaryFont,
       ).copyWith(
         pageTransitionsTheme: const PageTransitionsTheme(
           builders: <TargetPlatform, PageTransitionsBuilder>{

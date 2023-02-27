@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -83,7 +85,7 @@ class _StateBody extends State<Home> {
           tabs: const [
             GButton(
               icon: LineIcons.home,
-              text: 'Acceuil',
+              text: 'Accueil',
             ),
             GButton(
               icon: Icons.qr_code_scanner,

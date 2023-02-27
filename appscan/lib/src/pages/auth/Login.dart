@@ -1,10 +1,11 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 import '../../custom/Field.dart';
 import '../../utils/UtilsColot.dart';
-import '../home/Home.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -34,6 +35,22 @@ class _StateBody extends State<Login> {
       body: Stack(
         alignment: AlignmentDirectional.centerEnd,
         children: <Widget>[
+          Positioned(
+            child: Container(
+              height: size.height,
+              foregroundDecoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [
+                      Color.fromARGB(88, 8, 115, 202),
+                      Colors.transparent
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    stops: [0.100, .3],
+                    tileMode: TileMode.repeated),
+              ),
+            ),
+          ),
           Positioned(
             child: SizedBox(
               width: size.width,
