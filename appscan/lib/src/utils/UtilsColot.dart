@@ -49,6 +49,24 @@ const color_purple = Color(0xFF673AB7);
 
 class AppFont {
   AppFont._();
+static ThemeData darkTheme = ThemeData(
+    accentColor: Colors.red,
+    brightness: Brightness.dark,
+    primaryColor: Colors.amber,
+    buttonTheme: ButtonThemeData(
+      buttonColor: Colors.amber,
+      disabledColor: Colors.grey,
+    ));
+
+static ThemeData lightTheme = ThemeData(
+    accentColor: Colors.pink,
+    brightness: Brightness.light,
+    primaryColor: Colors.blue,
+    buttonTheme: ButtonThemeData(
+      buttonColor: Colors.blue,
+      disabledColor: Colors.grey,
+    ));
+
   static const Color blueColor = Color(0xff015994);
   static const Color greyColor = Color(0xffF3F2F1);
   static String primaryFont = 'Poppins';

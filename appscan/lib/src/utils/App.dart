@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -20,10 +18,12 @@ class App extends StatelessWidget {
       systemNavigationBarIconBrightness: Brightness.light,
     ));
     return GetMaterialApp(
+      // theme:AppFont. _lightTheme,
+      darkTheme: AppFont.darkTheme,
       initialRoute: '/',
       getPages: [
-       GetPage(name: '/', page:()=>const Login()),
-       GetPage(name: '/home', page:()=>const Home()),
+        GetPage(name: '/', page: () => const Login()),
+        GetPage(name: '/home', page: () => const Home()),
       ],
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

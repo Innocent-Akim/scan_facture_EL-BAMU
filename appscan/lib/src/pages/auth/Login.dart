@@ -20,8 +20,8 @@ class _StateBody extends State<Login> {
   bool status = true;
   bool setSession = false;
   bool getStatu = false;
-  TextEditingController username = TextEditingController();
-  TextEditingController password = TextEditingController();
+  var username = TextEditingController();
+  var password = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -40,14 +40,15 @@ class _StateBody extends State<Login> {
               height: size.height,
               foregroundDecoration: const BoxDecoration(
                 gradient: LinearGradient(
-                    colors: [
-                      Color.fromARGB(88, 8, 115, 202),
-                      Colors.transparent
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: [0.100, .3],
-                    tileMode: TileMode.repeated),
+                  colors: [
+                    Color.fromARGB(87, 15, 134, 198),
+                    Colors.transparent
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  stops: [0.100, .3],
+                  tileMode: TileMode.repeated,
+                ),
               ),
             ),
           ),
