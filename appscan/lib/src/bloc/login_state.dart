@@ -9,9 +9,17 @@ class LoginInitial extends LoginState {}
 
 class LoginLoading extends LoginState {}
 
-class LoginSucces extends LoginState {}
+class LoginSucces extends LoginState {
+  final data;
+
+  LoginSucces({this.data});
+}
 
 class LoginFailed extends LoginState {
-  final msg;
-  LoginFailed({this.msg});
+  final data;
+  LoginFailed({this.data});
 }
+
+
+
+class LoginERROR extends LoginState {}

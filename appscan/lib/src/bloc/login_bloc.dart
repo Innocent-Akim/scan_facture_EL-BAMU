@@ -1,8 +1,11 @@
 // ignore_for_file: unrelated_type_equality_checks
 
+import 'package:appscan/src/api/Api.dart';
 import 'package:appscan/src/controller/Controller.dart';
+import 'package:appscan/src/models/ModelAuthentific.dart';
 import 'package:bloc/bloc.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:meta/meta.dart';
 
 part 'login_event.dart';
@@ -10,22 +13,29 @@ part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Controller controller = Get.put(Controller());
+  var box = GetStorage();
   LoginBloc() : super(LoginInitial()) {
-    on<LoginEvent>((event, emit) {
-      on<LoginSign>(_login);
-    });
+    on<LoginSign>(_login);
   }
+
   Future<void> _login(LoginSign event, Emitter<LoginState> emit) async {
     try {
       emit(LoginInitial());
-      controller.login(
-          body: {'username': event.password, 'password': event.username});
+      final response = await Api.dataPost(
+          body: {'username': event.username, 'password': event.password},
+          endPoint: 'login');
+      var data = modelAuthentificFromJson(response!.body);
       emit(LoginLoading());
-      if (controller.isConnected == 200) {
-        emit(LoginSucces());
+      print(data.msg);
+      if (response.statusCode == 200) {
+        box.write("token", data.token);
+        emit(LoginSucces(data: data));
+      } else {
+        emit(LoginFailed(data: data));
       }
     } catch (e) {
-      emit(LoginFailed(msg: e.toString()));
+     
+      emit(LoginERROR());
     }
   }
 }

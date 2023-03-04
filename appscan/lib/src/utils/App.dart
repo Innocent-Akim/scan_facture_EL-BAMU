@@ -2,6 +2,7 @@ import 'package:appscan/src/bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import '../pages/auth/Login.dart';
 import '../pages/home/Home.dart';
@@ -25,6 +26,7 @@ class App extends StatelessWidget {
       child: GetMaterialApp(
         // theme:AppFont. _lightTheme,
         darkTheme: AppFont.darkTheme,
+        builder:   EasyLoading.init(),
         initialRoute: '/',
         // defaultTransition: Transition.native,
 
@@ -37,6 +39,7 @@ class App extends StatelessWidget {
           primarySwatch: Colors.grey,
           dividerTheme: const DividerThemeData(space: 0),
           fontFamily: AppFont.primaryFont,
+
         ).copyWith(
           pageTransitionsTheme: const PageTransitionsTheme(
             builders: <TargetPlatform, PageTransitionsBuilder>{
