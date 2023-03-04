@@ -1,5 +1,6 @@
 // ignore_for_file: unused_local_variable
 
+import 'package:appscan/src/controller/Controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -17,6 +18,7 @@ class Login extends StatefulWidget {
 }
 
 class _StateBody extends State<Login> {
+  Controller controller=Get.put(Controller());
   bool status = true;
   bool setSession = false;
   bool getStatu = false;
@@ -70,89 +72,97 @@ class _StateBody extends State<Login> {
                           bottomRight: Radius.circular(20),
                         ),
                       ),
-                      child: SizedBox(
-                        width: double.infinity,
-                        // height: size.height,
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const SizedBox(height: 10),
-                                Expanded(
-                                  child: SvgPicture.asset("assets/img/auth.svg",
-                                      width: size.width * .6),
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
-                                    SizedBox(height: 20),
-                                    // Text(
-                                    //   "Authentification",
-                                    //   style: TextStyle(
-                                    //     fontSize: 25,
-                                    //     fontWeight: FontWeight.bold,
-                                    //   ),
-                                    // ),
-                                  ],
-                                ),
-                                const SizedBox(height: 20),
-                                buildTextField(
-                                    lineIcons: const Icon(LineIcons.user),
-                                    name: "Nom d'utilisateur",
-                                    controller: username),
-                                buildTextField(
-                                  lineIcons: const Icon(LineIcons.lock),
-                                  obscureText: status,
-                                  ispassword: true,
-                                  name: "Mot de passe",
-                                  status: status,
-                                  iconButton: IconButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        status = !status;
-                                      });
-                                    },
-                                    icon: status
-                                        ? const Icon(LineIcons.eyeSlash,
-                                            size: 20)
-                                        : const Icon(LineIcons.eye, size: 20),
+                      child: Form(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        child: SizedBox(
+                          width: double.infinity,
+                          // height: size.height,
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const SizedBox(height: 8),
+                                  Expanded(
+                                    child: Image.asset("assets/img/elbamu.png",
+                                        width: size.width * .7),
                                   ),
-                                  controller: password,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 8.0),
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Checkbox(
-                                            activeColor: AppFont.blueColor,
-                                            value: setSession,
-                                            onChanged: (bool? value) {
-                                              setState(() {
-                                                setSession = value!;
-                                              });
-                                            }),
-                                        const Text(
-                                            "Gardez votre session ouverte",
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            ))
-                                      ]),
-                                ),
-                                const SizedBox(height: 10),
-                                buildButton(
-                                    color: AppFont.blueColor,
-                                    text: "Connexion",
-                                    onPressed: () {
-                                      setState(() {
-                                        Get.toNamed('/home');
-                                      });
-                                    }),
-                                const SizedBox(height: 10),
-                              ],
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+                                      SizedBox(height: 14),
+                                      // Text(
+                                      //   "Authentification",
+                                      //   style: TextStyle(
+                                      //     fontSize: 25,
+                                      //     fontWeight: FontWeight.bold,
+                                      //   ),
+                                      // ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 20),
+                                  buildTextField(
+                                      lineIcons: const Icon(LineIcons.user),
+                                      name: "Nom d'utilisateur",
+                                      controller: username),
+                                  buildTextField(
+                                    lineIcons: const Icon(LineIcons.lock),
+                                    obscureText: status,
+                                    ispassword: true,
+                                    name: "Mot de passe",
+                                    status: status,
+                                    iconButton: IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          status = !status;
+                                        });
+                                      },
+                                      icon: status
+                                          ? const Icon(LineIcons.eyeSlash,
+                                              size: 20)
+                                          : const Icon(LineIcons.eye, size: 20),
+                                    ),
+                                    controller: password,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 8.0),
+                                    child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Checkbox(
+                                              activeColor: AppFont.blueColor,
+                                              value: setSession,
+                                              onChanged: (bool? value) {
+                                                setState(() {
+                                                  setSession = value!;
+                                                });
+                                              }),
+                                          const Text(
+                                              "Gardez votre session ouverte",
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ))
+                                        ]),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  buildButton(
+                                      color: AppFont.blueColor,
+                                      text: "Connexion",
+                                      onPressed: () {
+                                        setState(() {
+
+                                          controller.login(body:{
+                                            'username':'Akim',
+                                            'password':'3619'
+                                          });
+                                          Get.toNamed('/home');
+                                        });
+                                      }),
+                                  const SizedBox(height: 10),
+                                ],
+                              ),
                             ),
                           ),
                         ),

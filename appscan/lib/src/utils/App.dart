@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import '../pages/auth/Login.dart';
@@ -21,6 +22,8 @@ class App extends StatelessWidget {
       // theme:AppFont. _lightTheme,
       darkTheme: AppFont.darkTheme,
       initialRoute: '/',
+      defaultTransition: Transition.native,
+
       getPages: [
         GetPage(name: '/', page: () => const Login()),
         GetPage(name: '/home', page: () => const Home()),
