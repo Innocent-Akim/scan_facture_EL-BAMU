@@ -53,7 +53,7 @@ class Controller extends GetxController {
       isloadings(true);
       final response = await Api.dataPost(body: body, endPoint: 'login');
       if (response!.statusCode == 200) {
-        var resultat = modelAuthentificFromJson(response.body);
+        var resultat = authentificationFromJson(response.body);
         box.write("token", resultat.token);
 
         isConnected(response.statusCode);

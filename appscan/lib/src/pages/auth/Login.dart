@@ -1,10 +1,11 @@
-// ignore_for_file: unused_local_variable, avoid_single_cascade_in_expression_statements
+// ignore_for_file: unused_local_variable, avoid_single_cascade_in_expression_statements, prefer_const_constructors
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:appscan/src/controller/Controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -68,21 +69,19 @@ class _StateBody extends State<Login> {
               listener: (context, state) {
                 if (state is LoginInitial) {
                   focus.requestFocus(FocusNode());
-                  EasyLoading.show(
-                    status: "Initialisation...",
-                    maskType: EasyLoadingMaskType.custom,
-                  );
+                  setState(() {
+                    inProgress = true;
+                  });
                 }
                 if (state is LoginLoading) {
-                  EasyLoading.show(
-                    status: "Loading...",
-                    maskType: EasyLoadingMaskType.custom,
-                  );
+                  setState(() {
+                    inProgress = true;
+                  });
                 }
                 if (state is LoginERROR) {
                   setState(() {
                     inProgress = false;
-                    EasyLoading.dismiss(animation: true);
+                    // EasyLoading.dismiss(animation: true);
                     Flushbar(
                       title: "Attention",
                       message:
@@ -122,16 +121,18 @@ class _StateBody extends State<Login> {
                     EasyLoading.dismiss(animation: true);
                     Flushbar(
                       title: "Attention",
-                      message:
-                          "Mot depasse ou le nom d'utilisateur est incorrect",
+                      message: state.data.msg,
                       duration: const Duration(seconds: 3),
                       showProgressIndicator: true,
                       progressIndicatorBackgroundColor:
-                          const Color.fromARGB(255, 246, 91, 19),
-                      icon: const Icon(
-                        Icons.error_outline,
-                        size: 50,
-                        color: Color.fromARGB(255, 192, 4, 4),
+                          Color.fromARGB(255, 255, 255, 255),
+                      icon: Padding(
+                        padding: const EdgeInsets.only(right: 16.0),
+                        child: const Icon(
+                          Icons.error_outline,
+                          size: 50,
+                          color: Color.fromARGB(255, 255, 255, 255),
+                        ),
                       ),
                       flushbarPosition: FlushbarPosition.TOP,
                       flushbarStyle: FlushbarStyle.FLOATING,
@@ -141,7 +142,7 @@ class _StateBody extends State<Login> {
                       // ignore: prefer_const_literals_to_create_immutables
                       boxShadows: [
                         const BoxShadow(
-                            color: color_phone_dark,
+                            color: color_google_dark,
                             offset: Offset(0.0, 2.0),
                             blurRadius: 3.0)
                       ],
@@ -257,6 +258,7 @@ class _StateBody extends State<Login> {
                                     buildButton(
                                         color: AppFont.blueColor,
                                         text: "Connexion",
+                                        isprogross: inProgress,
                                         onPressed: () {
                                           setState(() {
                                             bloc?.add(LoginSign(
@@ -284,7 +286,8 @@ class _StateBody extends State<Login> {
     );
   }
 
-  buildButton({VoidCallback? onPressed, var text, Color? color}) {
+  buildButton(
+      {VoidCallback? onPressed, var text, Color? color, isprogross = false}) {
     return InkWell(
       onTap: onPressed,
       child: Container(
@@ -295,14 +298,19 @@ class _StateBody extends State<Login> {
           borderRadius: BorderRadius.circular(2),
         ),
         child: Center(
-          child: Text(
-            "$text",
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
-            ),
-          ),
+          child: !isprogross
+              ? Text(
+                  "$text",
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                  ),
+                )
+              : const SpinKitCircle(
+                  size: 30,
+                  color: Colors.white,
+                ),
         ),
       ),
     );

@@ -1,69 +1,109 @@
+// To parse this JSON data, do
+//
+//     final authentification = authentificationFromJson(jsonString);
+
 import 'dart:convert';
 
-ModelAuthentific modelAuthentificFromJson(String str) => ModelAuthentific.fromJson(json.decode(str));
+Authentification authentificationFromJson(String str) => Authentification.fromJson(json.decode(str));
 
-String modelAuthentificToJson(ModelAuthentific data) => json.encode(data.toJson());
+String authentificationToJson(Authentification data) => json.encode(data.toJson());
 
-class ModelAuthentific {
-    ModelAuthentific({
-        required this.msg,
-        required this.data,
-        required this.token,
+class Authentification {
+    Authentification({
+        this.msg,
+        this.data,
+        this.token,
     });
 
-    String msg;
-    Data data;
-    String token;
+    final String? msg;
+    final Data? data;
+    final String? token;
 
-    factory ModelAuthentific.fromJson(Map<String, dynamic> json) => ModelAuthentific(
+    Authentification copyWith({
+        String? msg,
+        Data? data,
+        String? token,
+    }) => 
+        Authentification(
+            msg: msg ?? this.msg,
+            data: data ?? this.data,
+            token: token ?? this.token,
+        );
+
+    factory Authentification.fromJson(Map<String, dynamic> json) => Authentification(
         msg: json["msg"],
-        data: Data.fromJson(json["data"]),
+        data: json["data"] == null ? null : Data.fromJson(json["data"]),
         token: json["token"],
     );
 
     Map<String, dynamic> toJson() => {
         "msg": msg,
-        "data": data.toJson(),
+        "data": data?.toJson(),
         "token": token,
     };
 }
 
 class Data {
     Data({
-        required this.id,
-        required this.username,
-        required this.password,
-        required this.statut,
-        required this.createdAt,
-        required this.updatedAt,
+        this.id,
+        this.username,
+        this.password,
+        this.statut,
+        this.createdAt,
+        this.updatedAt,
         this.magasinId,
-        required this.identificationId,
+        this.identificationId,
         this.depotId,
-        required this.identification,
+        this.identification,
     });
 
-    int id;
-    String username;
-    String password;
-    bool statut;
-    DateTime createdAt;
-    DateTime updatedAt;
-    dynamic magasinId;
-    int identificationId;
-    dynamic depotId;
-    Identification identification;
+    final int? id;
+    final String? username;
+    final String? password;
+    final bool? statut;
+    final DateTime? createdAt;
+    final DateTime? updatedAt;
+    final dynamic magasinId;
+    final int? identificationId;
+    final int? depotId;
+    final Identification? identification;
+
+    Data copyWith({
+        int? id,
+        String? username,
+        String? password,
+        bool? statut,
+        DateTime? createdAt,
+        DateTime? updatedAt,
+        dynamic magasinId,
+        int? identificationId,
+        int? depotId,
+        Identification? identification,
+    }) => 
+        Data(
+            id: id ?? this.id,
+            username: username ?? this.username,
+            password: password ?? this.password,
+            statut: statut ?? this.statut,
+            createdAt: createdAt ?? this.createdAt,
+            updatedAt: updatedAt ?? this.updatedAt,
+            magasinId: magasinId ?? this.magasinId,
+            identificationId: identificationId ?? this.identificationId,
+            depotId: depotId ?? this.depotId,
+            identification: identification ?? this.identification,
+        );
 
     factory Data.fromJson(Map<String, dynamic> json) => Data(
         id: json["id"],
         username: json["username"],
         password: json["password"],
         statut: json["statut"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
+        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         magasinId: json["magasinId"],
         identificationId: json["identificationId"],
         depotId: json["depotId"],
-        identification: Identification.fromJson(json["identification"]),
+        identification: json["identification"] == null ? null : Identification.fromJson(json["identification"]),
     );
 
     Map<String, dynamic> toJson() => {
@@ -71,39 +111,56 @@ class Data {
         "username": username,
         "password": password,
         "statut": statut,
-        "createdAt": createdAt.toIso8601String(),
-        "updatedAt": updatedAt.toIso8601String(),
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
         "magasinId": magasinId,
         "identificationId": identificationId,
         "depotId": depotId,
-        "identification": identification.toJson(),
+        "identification": identification?.toJson(),
     };
 }
 
 class Identification {
     Identification({
-        required this.id,
-        required this.nomComplet,
-        required this.contact,
-        required this.adresse,
-        required this.createdAt,
-        required this.updatedAt,
+        this.id,
+        this.nomComplet,
+        this.contact,
+        this.adresse,
+        this.createdAt,
+        this.updatedAt,
     });
 
-    int id;
-    String nomComplet;
-    String contact;
-    String adresse;
-    DateTime createdAt;
-    DateTime updatedAt;
+    final int? id;
+    final String? nomComplet;
+    final String? contact;
+    final String? adresse;
+    final DateTime? createdAt;
+    final DateTime? updatedAt;
+
+    Identification copyWith({
+        int? id,
+        String? nomComplet,
+        String? contact,
+        String? adresse,
+        DateTime? createdAt,
+        DateTime? updatedAt,
+    }) => 
+        Identification(
+            id: id ?? this.id,
+            nomComplet: nomComplet ?? this.nomComplet,
+            contact: contact ?? this.contact,
+            adresse: adresse ?? this.adresse,
+            createdAt: createdAt ?? this.createdAt,
+            updatedAt: updatedAt ?? this.updatedAt,
+        );
 
     factory Identification.fromJson(Map<String, dynamic> json) => Identification(
         id: json["id"],
         nomComplet: json["nomComplet"],
         contact: json["contact"],
         adresse: json["adresse"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
+        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     );
 
     Map<String, dynamic> toJson() => {
@@ -111,7 +168,7 @@ class Identification {
         "nomComplet": nomComplet,
         "contact": contact,
         "adresse": adresse,
-        "createdAt": createdAt.toIso8601String(),
-        "updatedAt": updatedAt.toIso8601String(),
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
     };
 }

@@ -1,3 +1,4 @@
+import 'package:appscan/src/bloc/list/product_bloc.dart';
 import 'package:appscan/src/bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,11 +23,12 @@ class App extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<LoginBloc>(create: (context) => LoginBloc()),
+        BlocProvider<ProductBloc>(create: (context) => ProductBloc()),
       ],
       child: GetMaterialApp(
         // theme:AppFont. _lightTheme,
         darkTheme: AppFont.darkTheme,
-        builder:   EasyLoading.init(),
+        builder: EasyLoading.init(),
         initialRoute: '/',
         // defaultTransition: Transition.native,
 
@@ -39,7 +41,6 @@ class App extends StatelessWidget {
           primarySwatch: Colors.grey,
           dividerTheme: const DividerThemeData(space: 0),
           fontFamily: AppFont.primaryFont,
-
         ).copyWith(
           pageTransitionsTheme: const PageTransitionsTheme(
             builders: <TargetPlatform, PageTransitionsBuilder>{

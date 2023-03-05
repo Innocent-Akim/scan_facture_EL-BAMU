@@ -1,5 +1,7 @@
 // ignore_for_file: unrelated_type_equality_checks
 
+import 'dart:convert';
+
 import 'package:appscan/src/api/Api.dart';
 import 'package:appscan/src/controller/Controller.dart';
 import 'package:appscan/src/models/ModelAuthentific.dart';
@@ -24,9 +26,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       final response = await Api.dataPost(
           body: {'username': event.username, 'password': event.password},
           endPoint: 'login');
-      var data = modelAuthentificFromJson(response!.body);
+      var data = authentificationFromJson(response!.body);
       emit(LoginLoading());
-      print(data.msg);
+      print(data);
       if (response.statusCode == 200) {
         box.write("token", data.token);
         emit(LoginSucces(data: data));
@@ -34,7 +36,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(LoginFailed(data: data));
       }
     } catch (e) {
-     
+      print("object");
       emit(LoginERROR());
     }
   }
