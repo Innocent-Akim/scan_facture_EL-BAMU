@@ -1,4 +1,7 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:animations/animations.dart';
+import 'package:appscan/src/pages/data/ListData.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
@@ -21,7 +24,8 @@ class _StateBody extends State<Home> {
 
   static const List<Widget> _windowsItem = <Widget>[
       Text("Home"),
-      Scan(),
+      // Scan(),
+      ListData(),
       Text("Profile"),
   ];
 
@@ -83,7 +87,7 @@ class _StateBody extends State<Home> {
           tabs: const [
             GButton(
               icon: LineIcons.home,
-              text: 'Acceuil',
+              text: 'Accueil',
             ),
             GButton(
               icon: Icons.qr_code_scanner,

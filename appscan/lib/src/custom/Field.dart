@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-
 import '../utils/UtilsColot.dart';
 
 OutlineInputBorder outlineBorder({required Color color}) {
@@ -29,7 +28,7 @@ Widget buildTextField({
     padding: const EdgeInsets.all(6.0),
     child: TextFormField(
       cursorHeight: 5,
-      textCapitalization: TextCapitalization.words,
+      textCapitalization: TextCapitalization.none,
       keyboardType: textInputType,
       keyboardAppearance: Brightness.light,
       readOnly: readOnly,
