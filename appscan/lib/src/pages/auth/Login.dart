@@ -82,79 +82,20 @@ class _StateBody extends State<Login> {
                   setState(() {
                     inProgress = false;
                     // EasyLoading.dismiss(animation: true);
-                    Flushbar(
-                      title: "Attention",
-                      message:
-                          "Mot depasse ou le nom d'utilisateur est incorrect",
-                      duration: const Duration(seconds: 3),
-                      showProgressIndicator: true,
-                      progressIndicatorBackgroundColor:
-                          const Color.fromARGB(255, 246, 91, 19),
-                      icon: const Icon(
-                        Icons.error_outline,
-                        size: 50,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                      flushbarPosition: FlushbarPosition.TOP,
-                      flushbarStyle: FlushbarStyle.FLOATING,
-                      reverseAnimationCurve: Curves.decelerate,
-                      forwardAnimationCurve: Curves.elasticOut,
-                      backgroundColor: Colors.red,
-                      // ignore: prefer_const_literals_to_create_immutables
-                      boxShadows: [
-                        const BoxShadow(
-                            color: color_phone_dark,
-                            offset: Offset(0.0, 2.0),
-                            blurRadius: 3.0)
-                      ],
-                      backgroundGradient: const LinearGradient(colors: [
-                        Color.fromARGB(0, 5, 79, 113),
-                        Color.fromARGB(0, 202, 84, 84)
-                      ]),
-                      isDismissible: false,
-                    )..show(context);
-                  });
+                    Controller.errorMessage(context,
+                        message:
+                            "Mot depasse ou le nom d'utilisateur est incorrect");});
                 }
                 if (state is LoginFailed) {
                   setState(() {
                     inProgress = false;
-                    Flushbar(
-                      title: "Attention",
-                      message: state.data.msg,
-                      duration: const Duration(seconds: 3),
-                      showProgressIndicator: true,
-                      progressIndicatorBackgroundColor:
-                          Color.fromARGB(255, 255, 255, 255),
-                      icon: Padding(
-                        padding: const EdgeInsets.only(right: 16.0),
-                        child: const Icon(
-                          Icons.error_outline,
-                          size: 50,
-                          color: Color.fromARGB(255, 255, 255, 255),
-                        ),
-                      ),
-                      flushbarPosition: FlushbarPosition.TOP,
-                      flushbarStyle: FlushbarStyle.FLOATING,
-                      reverseAnimationCurve: Curves.decelerate,
-                      forwardAnimationCurve: Curves.elasticOut,
-                      backgroundColor: Colors.red,
-                      // ignore: prefer_const_literals_to_create_immutables
-                      boxShadows: [
-                        const BoxShadow(
-                            color: color_google_dark,
-                            offset: Offset(0.0, 2.0),
-                            blurRadius: 3.0)
-                      ],
-                      backgroundGradient: const LinearGradient(colors: [
-                        Color.fromARGB(0, 5, 79, 113),
-                        Color.fromARGB(0, 202, 84, 84)
-                      ]),
-                      isDismissible: false,
-                    )..show(context);
+                    Controller.errorMessage(context, message: state.data.msg);
                   });
                 }
                 if (state is LoginSucces) {
-                  EasyLoading.dismiss(animation: true);
+                  setState(() {
+                     inProgress = false;
+                  });
                   Get.offAndToNamed("/home");
                 }
               },

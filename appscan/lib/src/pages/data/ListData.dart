@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
+import '../../controller/Controller.dart';
 import '../../utils/navbar.dart';
 import '../../utils/pk_skeleton.dart';
 
@@ -19,9 +20,12 @@ class ListData extends StatefulWidget {
 class _StateBody extends State<ListData> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   ProductBloc? bloc;
+    Controller contrller = Get.put(Controller());
+
 
   @override
   void initState() {
+    print(contrller.isloadings);
     _controller = AnimationController(
       value: 0.0,
       duration: const Duration(milliseconds: 150),

@@ -18,7 +18,7 @@ class ScanBloc extends Bloc<ScanEvent, ScanState> {
       if (response!.statusCode == 200) {
         emit(ScanSucces());
       } else {
-        emit(ScanFailed());
+        emit(ScanInvalid());
       }
     } catch (e) {
       emit(ScanError());

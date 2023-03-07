@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.appscan">
+   package="com.example.appscan">
+   <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="appscan"
+        android:label="ETs-ELBAMU"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

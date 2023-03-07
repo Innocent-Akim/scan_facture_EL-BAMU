@@ -10,6 +10,8 @@ class ScanLoading extends ScanState {}
 class ScanLoaded extends ScanState {}
 
 class ScanSucces extends ScanState {}
+class ScanInvalid extends ScanState {}
+
 
 class ScanFailed extends ScanState {}
 

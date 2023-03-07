@@ -28,7 +28,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           endPoint: 'login');
       var data = authentificationFromJson(response!.body);
       emit(LoginLoading());
-      print(data);
       if (response.statusCode == 200) {
         box.write("token", data.token);
         emit(LoginSucces(data: data));
@@ -36,7 +35,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(LoginFailed(data: data));
       }
     } catch (e) {
-      print("object");
       emit(LoginERROR());
     }
   }
