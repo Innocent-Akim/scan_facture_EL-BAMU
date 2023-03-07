@@ -2,8 +2,10 @@
 
 import 'dart:developer';
 import 'dart:io';
-import 'package:flutter/foundation.dart';
+import 'package:appscan/src/bloc/scan/scan_bloc.dart';
+import 'package:appscan/src/utils/UtilsColot.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/utils.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -18,6 +20,7 @@ class _Body extends State<Scan> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   Barcode? result;
   QRViewController? controller;
+  ScanBloc? bloc;
 
   @override
   void reassemble() {
@@ -26,6 +29,12 @@ class _Body extends State<Scan> {
       controller!.pauseCamera();
     }
     controller!.resumeCamera();
+  }
+
+  @override
+  void initState() {
+    bloc = BlocProvider.of<ScanBloc>(context);
+    super.initState();
   }
 
   @override
@@ -40,17 +49,35 @@ class _Body extends State<Scan> {
             color: Colors.white,
             child: Column(
               children: [
-                Expanded(flex: 4, child: _buildQrView(context)),
+                BlocListener<ScanBloc, ScanState>(
+                  listener: (context, state) {
+                    if (state is ScanInitial) {
+                      print("object---------------->>");
+                    }
+                    if (state is ScanLoading) {
+                      print("object---------------->>");
+                    }
+                    if (state is ScanSucces) {
+                      setState(() {
+                        Get.back();
+                      });
+                    }
+                  },
+                  child: Expanded(flex: 4, child: _buildQrView(context)),
+                ),
+                // if(result!=null)
 
-                Expanded(
-                  flex: 1,
-                  child: Center(
-                    child: (result != null)
-                        ? Text(
-                            'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
-                        : Text('Scan a code'),
-                  ),
-                )
+                // Expanded(
+                //   flex: 1,
+                //   child: Center(
+                //     child:
+
+                //      (result != null)
+                //         ? Text(
+                //             'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
+                //         : Text('Scan a code'),
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -83,6 +110,7 @@ class _Body extends State<Scan> {
     controller.scannedDataStream.listen((scanData) {
       setState(() {
         result = scanData;
+        bloc!.add(ScanSend(id: result!.code.toString().trim()));
       });
     });
   }
@@ -96,12 +124,22 @@ class _Body extends State<Scan> {
       key: qrKey,
       onQRViewCreated: _onQRViewCreated,
       overlay: QrScannerOverlayShape(
-          borderColor: Colors.red,
+          borderColor: AppFont.blueColor,
           borderRadius: 20,
           borderLength: 40,
           borderWidth: 15,
           cutOutSize: scanArea),
       onPermissionSet: (ctrl, p) => _onPermissionSet(context, ctrl, p),
+    );
+  }
+
+  Widget initScan(BuildContext context) {
+    return BlocListener(
+      listener: (context, state) {
+        if (state is ScanInitial) {}
+        if (state is ScanLoading) {}
+        if (state is ScanSucces) {}
+      },
     );
   }
 

@@ -118,7 +118,6 @@ class _StateBody extends State<Login> {
                 if (state is LoginFailed) {
                   setState(() {
                     inProgress = false;
-                    EasyLoading.dismiss(animation: true);
                     Flushbar(
                       title: "Attention",
                       message: state.data.msg,

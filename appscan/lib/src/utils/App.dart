@@ -1,5 +1,8 @@
 import 'package:appscan/src/bloc/list/product_bloc.dart';
 import 'package:appscan/src/bloc/login_bloc.dart';
+import 'package:appscan/src/bloc/scan/scan_bloc.dart';
+import 'package:appscan/src/pages/data/ListData.dart';
+import 'package:appscan/src/pages/scan/Scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,17 +27,19 @@ class App extends StatelessWidget {
       providers: [
         BlocProvider<LoginBloc>(create: (context) => LoginBloc()),
         BlocProvider<ProductBloc>(create: (context) => ProductBloc()),
+        BlocProvider<ScanBloc>(create: (context) => ScanBloc()),
       ],
       child: GetMaterialApp(
         // theme:AppFont. _lightTheme,
         darkTheme: AppFont.darkTheme,
-        builder: EasyLoading.init(),
+        // builder: EasyLoading.init(),
         initialRoute: '/',
         // defaultTransition: Transition.native,
 
         getPages: [
           GetPage(name: '/', page: () => const Login()),
-          GetPage(name: '/home', page: () => const Home()),
+          GetPage(name: '/home', page: () => const ListData()),
+          GetPage(name: '/scan', page: () => const Scan()),
         ],
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
